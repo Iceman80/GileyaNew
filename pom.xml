@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>Gileya</groupId>
-    <artifactId>com.gileya</artifactId>
+    <artifactId>Gileya</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <dependencies>
