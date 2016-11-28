@@ -25,7 +25,7 @@ public class Biblio {
     public void site() throws IOException {
         FindTexForSite findTexForSite=new FindTexForSite();
         findTexForSite.findTxt(filePath);
-        String doc="<em><strong>ЗМІСТ - СОДЕРЖАНИЕ - CONTENT </strong></em>\n" + "[cut]<br /></div>";
+        String doc="<em><strong>ЗМІСТ - CONTENT </strong></em>\n" + "[cut]<br /></div>";
         for (String tmp : findTexForSite.text) {
             doc+=tmp+"\n";
         }

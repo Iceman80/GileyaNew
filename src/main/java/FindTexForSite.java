@@ -12,8 +12,8 @@ public class FindTexForSite {
 
         Scanner scannerUa = new Scanner(helper.converter(filePath + "Зміст.docx"));
         FindReplace(scannerUa);
-        scannerUa = new Scanner(helper.converter(filePath + "СОДЕРЖАНИЕ.docx"));
-        FindReplace(scannerUa);
+//        scannerUa = new Scanner(helper.converter(filePath + "СОДЕРЖАНИЕ.docx"));
+//        FindReplace(scannerUa);
         scannerUa = new Scanner(helper.converter(filePath + "Content.docx"));
         FindReplace(scannerUa);
     }
