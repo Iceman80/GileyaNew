@@ -12,8 +12,6 @@ public class FindTexForSite {
 
         Scanner scannerUa = new Scanner(helper.converter(filePath + "Зміст.docx"));
         FindReplace(scannerUa);
-        scannerUa = new Scanner(helper.converter(filePath + "СОДЕРЖАНИЕ.docx"));
-        FindReplace(scannerUa);
         scannerUa = new Scanner(helper.converter(filePath + "Content.docx"));
         FindReplace(scannerUa);
     }
@@ -46,7 +44,7 @@ public class FindTexForSite {
                 text.add(fin);
 
             } else { //если что то не так
-                if (stTmp.equals("ЗМІСТ") || stTmp.equals("СОДЕРЖАНИЕ") || stTmp.equals("CONTENT")) {
+                if (stTmp.equals("ЗМІСТ") || stTmp.equals("CONTENT")) {
                     String fin = "\n        <p align=\"center\"><em><strong>" + stTmp + "</strong></em></p>";
                     text.add(fin);
                 } else {

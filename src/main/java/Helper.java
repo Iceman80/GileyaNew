@@ -48,6 +48,6 @@ public class Helper {
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             filePath = chooser.getSelectedFile().getAbsolutePath();
         }
-        return filePath + "\\";
+        return filePath + "/";
     }
 }
