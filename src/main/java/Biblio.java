@@ -5,30 +5,38 @@ import java.io.IOException;
 
 public class Biblio {
     private Helper helper = new Helper();
-    private String filePath =  helper.filePath();
+    private String filePath = helper.filePath();
 
     public Biblio() throws IOException {
     }
 
+
     public void biblio() throws IOException {
-        FindText findText = new FindText();
-        findText.findTxt(filePath);
-        String doc="\"Гілея: науковий вісник\" Збірник наукових праць, 2016, Вип. 10 ().\n" +
-                "[Титул]\n" +
-                "[Зміст]\n";
-        for (String tmp : findText.text) {
-            doc+=tmp+"\n";
+        if (!filePath.equals("\\")) {
+            FindText findText = new FindText();
+            findText.findTxt(filePath);
+            String doc = "\"Гілея: науковий вісник\" Збірник наукових праць, 2016, Вип. 10 ().\n" +
+                    "[Титул]\n" +
+                    "[Зміст]\n";
+            for (String tmp : findText.text) {
+                doc += tmp + "\n";
+            }
+            FileUtils.writeStringToFile(new File(filePath + "ZMIST.txt"), doc);
+            System.out.println("OK");
+        } else {
+            System.out.println("Error path");
         }
-        FileUtils.writeStringToFile(new File(filePath+"ZMIST.txt"), doc);
     }
 
     public void site() throws IOException {
-        FindTexForSite findTexForSite=new FindTexForSite();
-        findTexForSite.findTxt(filePath);
-        String doc="<em><strong>ЗМІСТ - CONTENT </strong></em>\n" + "[cut]<br /></div>";
-        for (String tmp : findTexForSite.text) {
-            doc+=tmp+"\n";
+        if (!filePath.equals("\\")) {
+            FindTexForSite findTexForSite = new FindTexForSite();
+            findTexForSite.findTxt(filePath);
+            String doc = "<em><strong>ЗМІСТ - CONTENT </strong></em>\n" + "[cut]<br /></div>";
+            for (String tmp : findTexForSite.text) {
+                doc += tmp + "\n";
+            }
+            FileUtils.writeStringToFile(new File(filePath + "Gileya.php"), doc);
         }
-        FileUtils.writeStringToFile(new File(filePath+"Gileya.php"), doc);
     }
 }
