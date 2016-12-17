@@ -15,14 +15,19 @@ import java.nio.file.Paths;
 
 public class Helper {
 
-    public String converter(String file) throws IOException {
+    public static final String UA_FILE = "Зміст.docx";
+    public static final String EN_FILE = "Content.docx";
+    private static final String DIRECTORY = "C:\\Users\\Serhii\\Desktop\\Зміст.С.С\\";
+    private static final String CONTENT_TYPE = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
+
+    public static String converter(String file) throws IOException {
         // read and convert to txt, doc or docx file
         String result = null;
         if (new File(file).exists()) {
             FileInputStream fis = new FileInputStream(new File(file));
             Path source = Paths.get(file);
-            if ("application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-                    .equals(Files.probeContentType(source))) { //is a docx
+
+            if (CONTENT_TYPE.equals(Files.probeContentType(source))) { //is a docx
                 XWPFDocument doc = new XWPFDocument(fis);
                 XWPFWordExtractor extract = new XWPFWordExtractor(doc);
                 result = extract.getText();
@@ -35,15 +40,23 @@ public class Helper {
         return result;
     }
 
-    public String filePath() throws IOException {
+    public static void filePath() throws IOException {
         //find path to file
+        Biblio biblio = new Biblio();
         String filePath = "";
-        JFileChooser chooser = new JFileChooser();
+        JFileChooser chooser = new JFileChooser(DIRECTORY);
         chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
         int returnVal = chooser.showDialog(null, "Find directory");
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             filePath = chooser.getSelectedFile().getAbsolutePath();
         }
-        return filePath + "\\";
+
+        if (!filePath.equals("")) {
+            biblio.biblio(filePath + "\\");
+            biblio.site(filePath + "\\");
+            System.out.println("Path OK");
+        } else {
+            System.out.println("Error path");
+        }
     }
 }

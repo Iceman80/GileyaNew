@@ -7,23 +7,24 @@ import java.util.regex.Pattern;
 public class FindTexForSite {
     ArrayList<String> text = new ArrayList<>();
 
-    public void findTxt(String filePath) throws IOException {
-        Helper helper = new Helper();
+    public  void findTxt(String filePath) throws IOException {
 
-        Scanner scannerUa = new Scanner(helper.converter(filePath + "Зміст.docx"));
-        FindReplace(scannerUa);
-//        scannerUa = new Scanner(helper.converter(filePath + "СОДЕРЖАНИЕ.docx"));
-//        FindReplace(scannerUa);
-        scannerUa = new Scanner(helper.converter(filePath + "Content.docx"));
-        FindReplace(scannerUa);
+        Scanner scanner = new Scanner(Helper.converter(filePath + Helper.UA_FILE));
+        FindReplace(scanner);
+
+        scanner = new Scanner(Helper.converter(filePath + Helper.EN_FILE));
+        FindReplace(scanner);
     }
 
-    public void FindReplace(Scanner scannerLg) {
-        while (scannerLg.hasNext()) {
-            String stTmp = (scannerLg.nextLine());
-            Pattern patern = Pattern.compile("\\.,\\s[\\D{3,19}^\\s]\\s[\\D{0,7}^\\s]\\.\\s[\\D{0,7}^\\s]\\.\\s|[\\D{3,19}^\\s]\\s[\\D{0,7}^\\s]\\.\\s[\\D{0,7}^\\s]\\.\\s"); //Поиск по фамилии имени и отчеству | Поиск по фамилии и имени | Поиск по фамилии имени и отчеству повторы
+    public void FindReplace(Scanner scanner) {
+        while (scanner.hasNext()) {
+            String stTmp = (scanner.nextLine());
+            Pattern patern = Pattern.compile("\\.,\\s[\\D{3,19}^\\s]\\s[\\D{0,7}^\\s]\\.\\s[\\D{0,7}^\\s]\\.\\s|" +
+                    "[\\D{3,19}^\\s]\\s[\\D{0,7}^\\s]\\.\\s[\\D{0,7}^\\s]\\.\\s");
+            //Поиск по фамилии имени и отчеству | Поиск по фамилии и имени | Поиск по фамилии имени и отчеству повторы
             Matcher mat = patern.matcher(stTmp);
-            Pattern paternDouble = Pattern.compile("[\\D{3,19}^\\s]\\s\\D{0,5}\\.\\s"); // По Поиск по фамилии и имени без отчества
+            Pattern paternDouble = Pattern.compile("[\\D{3,19}^\\s]\\s\\D{0,5}\\.\\s");
+            // По Поиск по фамилии и имени без отчества
             Matcher matD = paternDouble.matcher(stTmp);
             Pattern paternT = Pattern.compile("^\\D{4,15}\\s\\D{4,15}$"); //Поиск названия темы
             Matcher matT = paternT.matcher(stTmp);
