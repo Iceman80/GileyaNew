@@ -9,10 +9,7 @@ public class Biblio {
     public void biblio(String filePath) throws IOException {
         FindText findText = new FindText();
         findText.findTxt(filePath);
-        String doc = "\"Гілея: науковий вісник\" Збірник наукових праць, 2016, Вип. 11 ().\n" +
-                "[Титул]\n" +
-                "[Зміст]\n";
-
+        String doc =Helper.BIBIO_HEADER;
         for (String tmp : findText.text) {
             doc += tmp + "\n";
         }
@@ -23,8 +20,7 @@ public class Biblio {
     public void site(String filePath) throws IOException {
         FindTexForSite findTexForSite = new FindTexForSite();
         findTexForSite.findTxt(filePath);
-        String doc = "<em><strong>ЗМІСТ - CONTENT </strong></em>\n" + "[cut]<br /></div>";
-
+        String doc = Helper.SITE_HEADER;
         for (String tmp : findTexForSite.text) {
             doc += tmp + "\n";
         }
