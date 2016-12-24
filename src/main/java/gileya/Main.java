@@ -1,3 +1,5 @@
+package gileya;
+
 import java.io.IOException;
 
 public class Main {

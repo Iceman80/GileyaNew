@@ -1,4 +1,5 @@
-import java.io.IOException;
+package gileya;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -59,7 +60,7 @@ public class FindTexForSite {
 
     @Override
     public String toString() {
-        return "FindText{" +
+        return "gileya.FindText{" +
                 "text=" + text +
                 '}';
     }

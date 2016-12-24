@@ -1,4 +1,5 @@
-import java.io.IOException;
+package gileya;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -19,7 +20,8 @@ public class FindText {
             String stUa = scannerUa.nextLine();
             String stEn = scannerEn.nextLine();
 
-            if (!stUa.equals("ЗМІСТ") & !stUa.equals("Історичні науки") & !stUa.equals("Філософські науки") & !stUa.equals("Політичні науки") & !stUa.equals("Наукове життя")) {
+            if (!stUa.equals("ЗМІСТ") && !stUa.equals("Історичні науки") && !stUa.equals("Філософські науки") &&
+                    !stUa.equals("Політичні науки") && !stUa.equals("Наукове життя")) {
                 Pattern patern1 = Pattern.compile("[А-Я,І,Є,A-Z]\\.\\s[А-Я,A-Z,І,Є]\\.\\s"); //Поиск инициалов имени и отчества Ua
                 Matcher mat1 = patern1.matcher(stUa);
                 Pattern patern1En = Pattern.compile("[A-Z,А-Я]\\.\\s[A-Z,А-Я]\\.\\s"); //Поиск инициалов имени и отчества En
@@ -77,7 +79,7 @@ public class FindText {
 
     @Override
     public String toString() {
-        return "FindText{" +
+        return "gileya.FindText{" +
                 "text=" + text +
                 '}';
     }
