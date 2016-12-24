@@ -1,5 +1,6 @@
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -8,17 +9,12 @@ import java.util.regex.Pattern;
 regexp for library
  */
 public class FindText {
-    ArrayList<String> text = new ArrayList<String>();
-    private String endEn;
+    ArrayList<String> text = new ArrayList<>();
 
-    public void findTxt(String filePath) throws IOException {
-        Scanner scannerUa = new Scanner(Helper.converter(filePath + Helper.UA_FILE));
-        Scanner scannerEn = new Scanner(Helper.converter(filePath + Helper.EN_FILE));
-        FindReplace(scannerUa,scannerEn);
-    }
-
-    public void FindReplace(Scanner scannerUa, Scanner scannerEn) {
-
+    public void findReplace(List<Scanner> scanners) {
+        Scanner scannerUa = scanners.get(0);
+        Scanner scannerEn = scanners.get(1);
+        String endEn;
         while (scannerUa.hasNext() && scannerEn.hasNext()) {
             String stUa = scannerUa.nextLine();
             String stEn = scannerEn.nextLine();

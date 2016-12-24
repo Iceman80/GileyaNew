@@ -23,6 +23,8 @@ public class Helper {
             "[Титул]\n" +
             "[Зміст]\n";
     private static final String CONTENT_TYPE_DOCX = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
+    public static final String FILE_NAME_FOR_SYTE = "Gileya.php";
+    public static final String FILE_NAME_FOR_BIBLIO = "ZMIST.txt";
 
     public static String converter(String file) throws IOException {
         // read and convert to txt, doc or docx file

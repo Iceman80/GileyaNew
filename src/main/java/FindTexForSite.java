@@ -1,5 +1,6 @@
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -7,16 +8,14 @@ import java.util.regex.Pattern;
 public class FindTexForSite {
     ArrayList<String> text = new ArrayList<>();
 
-    public  void findTxt(String filePath) throws IOException {
-
-        Scanner scanner = new Scanner(Helper.converter(filePath + Helper.UA_FILE));
-        FindReplace(scanner);
-
-        scanner = new Scanner(Helper.converter(filePath + Helper.EN_FILE));
-        FindReplace(scanner);
+    public void findReplace(List<Scanner> scanners) {
+        Scanner scanner = scanners.get(0);
+        replasePatern(scanner);
+        scanner = scanners.get(1);
+        replasePatern(scanner);
     }
 
-    public void FindReplace(Scanner scanner) {
+    private void replasePatern (Scanner scanner){
         while (scanner.hasNext()) {
             String stTmp = (scanner.nextLine());
             Pattern patern = Pattern.compile("\\.,\\s[\\D{3,19}^\\s]\\s[\\D{0,7}^\\s]\\.\\s[\\D{0,7}^\\s]\\.\\s|" +
