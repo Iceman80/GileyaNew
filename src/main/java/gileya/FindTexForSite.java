@@ -6,6 +6,10 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static gileya.Constants.PATTERN_FULL_NAME;
+import static gileya.Constants.PATTERN_NAME_AND_SURNAME;
+import static gileya.Constants.PATTERN_THEMES;
+
 public class FindTexForSite {
     ArrayList<String> text = new ArrayList<>();
 
@@ -19,14 +23,13 @@ public class FindTexForSite {
     private void replasePatern (Scanner scanner){
         while (scanner.hasNext()) {
             String stTmp = (scanner.nextLine());
-            Pattern patern = Pattern.compile("\\.,\\s[\\D{3,19}^\\s]\\s[\\D{0,7}^\\s]\\.\\s[\\D{0,7}^\\s]\\.\\s|" +
-                    "[\\D{3,19}^\\s]\\s[\\D{0,7}^\\s]\\.\\s[\\D{0,7}^\\s]\\.\\s");
+            Pattern patern = Pattern.compile(PATTERN_FULL_NAME);
             //Поиск по фамилии имени и отчеству | Поиск по фамилии и имени | Поиск по фамилии имени и отчеству повторы
             Matcher mat = patern.matcher(stTmp);
-            Pattern paternDouble = Pattern.compile("[\\D{3,19}^\\s]\\s\\D{0,5}\\.\\s");
+            Pattern paternDouble = Pattern.compile(PATTERN_NAME_AND_SURNAME);
             // По Поиск по фамилии и имени без отчества
             Matcher matD = paternDouble.matcher(stTmp);
-            Pattern paternT = Pattern.compile("^\\D{4,15}\\s\\D{4,15}$"); //Поиск названия темы
+            Pattern paternT = Pattern.compile(PATTERN_THEMES); //Поиск названия темы
             Matcher matT = paternT.matcher(stTmp);
 
             if (mat.find()) {

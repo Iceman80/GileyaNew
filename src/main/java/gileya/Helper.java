@@ -17,19 +17,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import static gileya.Constants.CONTENT_TYPE_DOCX;
+import static gileya.Constants.DIRECTORY;
+import static gileya.Constants.EN_FILE;
+import static gileya.Constants.UA_FILE;
+
 
 public class Helper {
-
-    private static final String UA_FILE = "Зміст.docx";
-    private static final String EN_FILE = "Content.docx";
-    private static final String DIRECTORY = "C:\\Users\\Serhii\\Desktop\\Зміст.С.С\\";
-    public static final String SITE_HEADER = "<em><strong>ЗМІСТ - CONTENT </strong></em>\n" + "[cut]<br /></div>";
-    public static final String BIBIO_HEADER = "\"Гілея: науковий вісник\" Збірник наукових праць, 2016, Вип. 11 ().\n" +
-            "[Титул]\n" +
-            "[Зміст]\n";
-    private static final String CONTENT_TYPE_DOCX = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
-    public static final String FILE_NAME_FOR_SYTE = "Gileya.php";
-    public static final String FILE_NAME_FOR_BIBLIO = "ZMIST.txt";
 
     private static String converter(String file) throws IOException {
         // read and convert to txt, doc or docx file
@@ -74,8 +68,8 @@ public class Helper {
 
     private static List<Scanner> returnScanner(String filePath) throws IOException {
         List<Scanner> scanners = new ArrayList<>();
-        Scanner scannerUa = new Scanner(Helper.converter(filePath + Helper.UA_FILE));
-        Scanner scannerEn = new Scanner(Helper.converter(filePath + Helper.EN_FILE));
+        Scanner scannerUa = new Scanner(converter(filePath + UA_FILE));
+        Scanner scannerEn = new Scanner(converter(filePath + EN_FILE));
         scanners.add(scannerUa);
         scanners.add(scannerEn);
         return scanners;
