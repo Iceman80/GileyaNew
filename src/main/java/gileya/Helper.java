@@ -54,7 +54,7 @@ public class Helper {
         chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
         int returnVal = chooser.showDialog(null, "Select directory");
         if (returnVal == JFileChooser.APPROVE_OPTION) {
-            filePath = chooser.getSelectedFile().getAbsolutePath()+ "\\";
+            filePath = chooser.getSelectedFile().getAbsolutePath()+ "/";
         }
 
         if (!filePath.isEmpty()) {
@@ -68,8 +68,8 @@ public class Helper {
 
     private static List<Scanner> returnScanner(String filePath) throws IOException {
         List<Scanner> scanners = new ArrayList<>();
-        Scanner scannerUa = new Scanner(converter(filePath + UA_FILE));
-        Scanner scannerEn = new Scanner(converter(filePath + EN_FILE));
+        Scanner scannerUa = new Scanner(converter(filePath + UA_FILE.toUpperCase()));
+        Scanner scannerEn = new Scanner(converter(filePath + EN_FILE.toUpperCase()));
         scanners.add(scannerUa);
         scanners.add(scannerEn);
         return scanners;
